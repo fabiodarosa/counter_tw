@@ -16,17 +16,6 @@ const client = new tmi.client(opts);
 client.connect();
 
 const httpServer = createServer((req, res) => {
-  if (req.url === "/socket.io.js") {
-    // reload the file every time
-    const content = readFileSync("index.html");
-    const length = Buffer.byteLength(content);
-
-    res.writeHead(200, {
-      "Content-Type": "text/html",
-      "Content-Length": length
-    });
-    res.end(content);
-  }
   if (req.url !== "/") {
     res.writeHead(404);
     res.end("Not found");
