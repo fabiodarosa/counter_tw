@@ -10,9 +10,24 @@
       style="text-align: center; color: white; font-size: 240px;"
       id="messages"
     />
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const appendMessage = (content) => {
+        const item = document.getElementById("messages");
+        let hrs = Math.trunc(content / 3600);
+        let min = ("0" + Math.trunc((content % 3600) / 60)).slice(-2);
+        let sec = ("0" + Math.trunc(content % 60)).slice(-2);
+        item.innerHTML = `${hrs}:${min}:${sec}`;
+      };
 
-    <script type="text/javascript" src="front-scoket.js">
-      window.alert("html");
+      const socket = io({});
+      socket.on("down", (reason) => {
+        appendMessage(`${reason}`);
+      });
+
+      socket.on("finish", (reason) => {
+        document.getElementById("messages").innerHTML = "ACABOU!!!";
+      });
     </script>
   </body>
 </html>
