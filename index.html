@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Socket.IO Fiddle</title>
+  </head>
+
+  <body>
+    <div
+      style="text-align: center; color: white; font-size: 240px;"
+      id="messages"
+    />
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const appendMessage = (content) => {
+        const item = document.getElementById("messages");
+        hrs = Math.trunc(content / 60 / 60);
+        min = ("0" + Math.trunc((content - hrs) / 60)).slice(-2);
+        sec = ("0" + Math.trunc(content - hrs * 60 * 60 - min * 60)).slice(-2);
+        item.innerHTML = `${hrs}:${min}:${sec}`;
+        //item.innerHTML = content;
+      };
+      // 7.933333333333334:7.801111111111111:460.2655555555556
+      const socket = io({
+        // Socket.IO options
+      });
+      socket.on("down", (reason) => {
+        console.log(reason);
+        appendMessage(`${reason}`);
+      });
+
+      socket.on("finish", (reason) => {
+        document.getElementById("messages").innerHTML = "ACABOU!!!";
+      });
+    </script>
+  </body>
+</html>
