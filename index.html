@@ -11,32 +11,6 @@
       id="messages"
     />
 
-    <script src="socket.io/socket.io.js"></script>
-    <script>
-      const appendMessage = (content) => {
-        const item = document.getElementById("messages");
-        hrs = Math.trunc(content / 3600);
-        min = ("0" + Math.trunc((content % 3600) / 60)).slice(-2);
-        sec = ("0" + Math.trunc(content % 60)).slice(-2);
-        console.log("TMS - " + content);
-        console.log("HRS - " + hrs);
-        console.log("MIN - " + min);
-        console.log("SEC - " + sec);
-        console.log("___________________________________");
-        item.innerHTML = `${hrs}:${min}:${sec}`;
-        //item.innerHTML = content;
-      };
-      // 7.933333333333334:7.801111111111111:460.2655555555556
-      const socket = io({
-        // Socket.IO options
-      });
-      socket.on("down", (reason) => {
-        appendMessage(`${reason}`);
-      });
-
-      socket.on("finish", (reason) => {
-        document.getElementById("messages").innerHTML = "ACABOU!!!";
-      });
-    </script>
+    <script src="front-scoket.js" />
   </body>
 </html>
