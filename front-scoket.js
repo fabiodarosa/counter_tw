@@ -1,4 +1,4 @@
-const { Server } = require("socket.io");
+import { Server } from "socket.io";
 
 const appendMessage = (content) => {
   const item = document.getElementById("messages");

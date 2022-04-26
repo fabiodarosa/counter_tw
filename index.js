@@ -16,6 +16,17 @@ const client = new tmi.client(opts);
 client.connect();
 
 const httpServer = createServer((req, res) => {
+  if (req.url === "/front-scoket.js") {
+    const content = readFileSync("front-scoket.js");
+    const length = Buffer.byteLength(content);
+
+    res.writeHead(200, {
+      "Content-Type": "text/javascript",
+      "Content-Length": length
+    });
+    res.end(content);
+  }
+
   if (req.url !== "/") {
     res.writeHead(404);
     res.end("Not found");
