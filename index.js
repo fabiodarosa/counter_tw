@@ -17,7 +17,7 @@ client.connect();
 
 const httpServer = createServer((req, res) => {
   if (req.url !== "/") {
-    res.writeHead(404);
+    res.writeHead(200);
     res.end("Not found");
     return;
   }
